@@ -23,7 +23,15 @@ if(isset(
     $_POST["UserRole"]
                         )
 ) {
+    print "We are trying to sign you up!";
 
+    if($_POST["Psw"]==$_POST["Psw2"]) {
+        $sql = $connection->prepare("INSERT INTO PPL(FirstName, LastName, UserName, Psw, ID_COUNTRY) VALUES(?,?,?,?,?)");
+
+        if (!sql) {
+
+        }
+    }
 }
 ?>
 
