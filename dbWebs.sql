@@ -3,6 +3,13 @@ drop database Assignment;
 create database Assignment;
 use Assignment;
 
+Create table Countries (
+    ID_Country int not null AUTO_INCREMENT,
+    CountryName varchar(50) UNIQUE,
+    PeopleNumber int,
+    primary key (ID_Country)
+);
+
 Create table People (
     ID_Person int not null AUTO_INCREMENT,
     FirstName varchar(50),
@@ -15,13 +22,6 @@ Create table People (
     foreign key (ID_Country) references Countries(ID_Country)
 );
 
-Create table Countries (
-    ID_Country int not null AUTO_INCREMENT,
-    CountryName varchar(50) UNIQUE,
-    PeopleNumber int,
-    primary key (ID_Country)
-);
-
 Create table Products (
     ID_Product int not null AUTO_INCREMENT,
     ProductName varchar(50),
@@ -29,3 +29,5 @@ Create table Products (
     ItemsAvailable int,
     primary key (ID_Product)
 );
+
+Insert into Countries (CountryName) values ("Luxembourg");
