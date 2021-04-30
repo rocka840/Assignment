@@ -6,7 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>User Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assignment.css'>
     <script src='main.js'></script>
 </head>
 
@@ -14,6 +14,8 @@
 
 <?php
 include_once "dbWebs.php";
+
+
 
 if(isset($_POST["logout"])){
 
@@ -24,7 +26,7 @@ if(isset($_POST["logout"])){
 
 if(isset($_POST["UserName"], $_POST["Psw"])){
 
-    $sql = $connection->prepare("Select * from people where UserName=?");
+    $sql = $connection->prepare("Select * from People where UserName=?");
     if(!$sql){
         die("Error in your sql");
     }
@@ -37,7 +39,7 @@ if(isset($_POST["UserName"], $_POST["Psw"])){
 
     $result = $sql->get_result();
 
-    if($result->num_rowa==0){
+    if($result->num_rows==0){
         print "Your username is not in our database";
     } else {
        
@@ -46,12 +48,15 @@ if(isset($_POST["UserName"], $_POST["Psw"])){
         if(password_verify($_POST["Psw"], $row["Psw"])){
             print "You typed the correct password. You are now logged in";
             $_SESSION["isUserLoggedIn"] = true;
+            $_SESSION["CurrentUser"]=$_POST["UserName"];
+            $_SESSION["UserRole"]=$row["UserRole"];
         } else {
             print "Wrong password";
         }
     }
 }
 
+include_once "Navigation.php";
 if($_SESSION["isUserLoggedIn"]){
     ?>
 
