@@ -26,7 +26,7 @@
                     ?>
                     <tr>
                         <td>Product Name:<?=$row["ProductName"]?></td>
-                        <td>Price:<?=$row["Price"]?></td>
+                        <td>Price:<?=$row["Price"]?>€</td>
                         <td>How many Available:<?=$row["ItemsAvailable"]?></td>
                     </tr>
                     <?php
