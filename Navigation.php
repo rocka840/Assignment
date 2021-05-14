@@ -13,10 +13,11 @@
 
 
 <div class="nav">
+   <a href="HomePage.php">Home</a>
    <a href="UserLogin.php">Login</a>
-   <a href="UserSignUp.php">User SignUp</a>
-   <a href="ViewProducts.php">View Products</a>
-
+   <a href="UserSignUp.php">SignUp</a>
+   <a href="ViewProducts.php">Products</a>
+   
    <?php 
    if(isset($_SESSION["UserRole"])&&$_SESSION["UserRole"]=="Admin"){
      

@@ -30,4 +30,20 @@ Create table Products (
     primary key (ID_Product)
 );
 
+Create table Orders (
+    ID_Orders int not null AUTO_INCREMENT,
+    PersonOrder int,
+    primary key (ID_Orders),
+    foreign key (PersonOrder) references People(ID_Person)
+);
+
+Create table OrderContents (
+    ID_OrderContent int not null AUTO_INCREMENT,
+    primary key (ID_OrderContent),
+    OrderNumber int,
+    OrderItem int,
+    foreign key (OrderNumber) references Orders(ID_Orders),
+    foreign key (OrderItem) references Products(ID_Product)
+);
+
 Insert into Countries (CountryName) values ("Luxembourg");

@@ -14,7 +14,15 @@
     include_once("dbWebs.php");
     include_once "Navigation.php";
 
-    
+    if(isset($_POST["CountryToDelete"])){
+        $sqlDelete = $connection->prepare("Delete from Countries where ID_Country =?");
+        if(!$sqlDelete)
+            die("Error in sql delete statement");
+        $sqlDelete->bind_param("i", $_POST["CountryToDelete"]);
+        $sqlDelete->execute();
+    }  
+
+
     if($_SESSION["isUserLoggedIn"]){
         
         if(isset($_POST["NewCountry"])){
@@ -43,7 +51,7 @@
         </th>
 
         <?php
-        $sqlSelect = $connection->prepare("SELECT CountryName from Countries");
+        $sqlSelect = $connection->prepare("SELECT CountryName, ID_Country from Countries");
         $selectionWentOK = $sqlSelect->execute();
 
         if($selectionWentOK){
@@ -51,7 +59,12 @@
             while($row=$result->fetch_assoc()){
                 ?>
                 <tr>
-                    <td><?=$row["CountryName"]?></td>
+                    <td><?=$row["CountryName"]?>
+                    <form method="POST">
+                        <input type="hidden" name="CountryToDelete" value="<?= $row["ID_Country"] ?>">
+                        <input type="submit" value="Delete">
+                    </form>
+                    </td>
                 </tr>
                 <?php
             }
