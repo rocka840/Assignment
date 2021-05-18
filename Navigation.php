@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>User Login</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='Assignment.css'>
-    <script src='main.js'></script>
-</head>
-
-
 
 <div class="nav">
    <a href="HomePage.php">Home</a>
    <a href="UserLogin.php">Login</a>
+   <?php
+      if($_SESSION["isUserLoggedIn"] == false){
+
+   ?>
    <a href="UserSignUp.php">SignUp</a>
+   <?php
+      }
+   ?>
+   
    <a href="ViewProducts.php">Products</a>
    
    <?php 
@@ -28,7 +23,3 @@
    }
    ?>
 </div>
-
-
-</head>
-</html>

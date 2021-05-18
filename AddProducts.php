@@ -5,7 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Add Products</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assignment.css'>
     <script src='main.js'></script>
 </head>
 <body>
@@ -61,8 +61,8 @@
     <h1>Add a new product:</h1>
     <div class="container">
         <form method="POST"><BR>
-            <label for="ProductName">Product Name<label> <input name="ProductName"><BR>
-            <label for="Price">Price<label> <input name="Price"><BR>
+            <label for="ProductName">Product Name:<label> <input name="ProductName"><BR>
+            <label for="Price">Price:<label> <input name="Price"><BR>
             <label for="ItemsAvailable">How many are available?<label> <input name="ItemsAvailable"><BR>
             <input type="submit" name="submit">
         </form>
