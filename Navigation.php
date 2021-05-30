@@ -20,6 +20,10 @@
       <a href="AddCountry.php">Add Country</a>
       <a href="AddProducts.php">Add Products</a>
    <?php
+   } else if($_SESSION["isUserLoggedIn"]){
+      ?>
+         <a href="ShoppingCart.php">Checkout: <?= sizeof($_SESSION["ShoppingCart"]) ?> items</a>
+      <?php
    }
    ?>
 </div>

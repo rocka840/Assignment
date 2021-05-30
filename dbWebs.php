@@ -4,6 +4,11 @@ if(!isset($_SESSION["isUserLoggedIn"])){
     $_SESSION["isUserLoggedIn"] = false;
 }
 
+if(!isset($_SESSION["ShoppingCart"])){
+    $_SESSION["ShoppingCart"] = [];
+}
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";

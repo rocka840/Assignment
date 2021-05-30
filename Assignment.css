@@ -1,3 +1,5 @@
+/* start of navigation bar commands*/
+
 a {
     display: inline;
     width: 50px;
@@ -6,3 +8,6 @@ a {
     text-decoration: none;
     text-align: center;
 }
+
+
+/* end of navigation bar commands*/
