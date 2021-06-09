@@ -5,15 +5,17 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Add Country</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='assignment.css'>
-    <script src='main.js'></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='Assignment.css'>
 </head>
 <body>
 
     <?php
     include_once("dbWebs.php");
     include_once "Navigation.php";
-
+    ?>
+        <h1>Current Existing countries in our database</h1>
+        <div class="country">
+    <?php
     if(isset($_POST["CountryToDelete"])){
         $sqlDelete = $connection->prepare("Delete from Countries where ID_Country =?");
         if(!$sqlDelete)
@@ -44,8 +46,7 @@
         <input type="submit" value="Add">
     </form>
 
-    <h1>Current Existing countries in our database</h1>
-    <table>
+    <table id="IDcoun">
         <th>
             <td>Country name:</td>
         </th>
@@ -74,7 +75,7 @@
         ?>
 
     </table>
-
+    </div>
 
 </body>
 </html>

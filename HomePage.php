@@ -5,7 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>HomePage</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='assignment.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='Assignment.css'>
     <script src='main.js'></script>
 </head>
 <body>
@@ -15,8 +15,10 @@
         include_once "Navigation.php";
     ?>
 
-    <h1>Welcome to this page</h1>
-    <p>This is the home page and it will guide you to other pages linked up top</p>
+<div class="home">
+    <h1>Online Shopping</h1>
+    <p>Buy Anything you want on this website. If there is something you wish us to sell, please email us here: shoppingkauplus@hotmail.com</p>
+</div>
 
 </body>
 </html>

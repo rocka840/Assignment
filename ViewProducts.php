@@ -11,73 +11,81 @@
 </head>
 
 <body>
-    <?php
-    include_once("dbWebs.php");
-
-    if(isset($_POST["ProductToBuy"])){
-        //array_push($_SESSION["ShoppingCart"], $_POST["ProductToBuy"]);
-        //ALTERNATIVE:
-        $_SESSION["ShoppingCart"][$_POST["ProductToBuy"]] = $_POST["HowManyItems"];
-    }
-
-    if (isset($_POST["ProductToDelete"])) {
-        $sqlDelete = $connection->prepare("Delete from Products where ID_Product =?");
-        if (!$sqlDelete)
-            die("Error in sql delete statement");
-        $sqlDelete->bind_param("i", $_POST["ProductToDelete"]);
-        $sqlDelete->execute();
-    }
-
-    include_once "Navigation.php";
-
-    ?>
-    <h1>Products</h1>
-
-    <table>
+    
+    
         <?php
-        $sqlSelect = $connection->prepare("SELECT * from Products");
-        $selectionWentOK = $sqlSelect->execute();
+        include_once("dbWebs.php");
 
-        if ($selectionWentOK) {
-            $result = $sqlSelect->get_result();
-            while ($row = $result->fetch_assoc()) {
-        ?>
-                <tr>
-                    <td>Product Name:<?= $row["ProductName"] ?></td>
-                    <td>Price:<?= $row["Price"] ?>€</td>
-                    <td>How many Available:<?= $row["ItemsAvailable"] ?></td>
-                    <?php
-                    if (isset($_SESSION["UserRole"]) && $_SESSION["UserRole"] == "Admin") {
-                    ?>
-                        <td>
-                            <form method="POST">
-                                <input type="hidden" name="ProductToDelete" value="<?= $row["ID_Product"] ?>">
-                                <input type="submit" value="Delete">
-                            </form>
-                        </td>
-                    <?php
-                    } else {
-                    ?>
-                        <td>
-                            <form method="POST">
-                                <input type="hidden" name="ProductToBuy" value="<?= $row["ID_Product"] ?>">
-                                <input type="number" name="HowManyItems" value="0">
-                                <input type="submit" value="Add to cart">
-                            </form>
-                        </td>
-                    <?php
-                    }
-                    ?>
-                </tr>
-        <?php
+        if (isset($_POST["ProductToBuy"])) {
+            if ($_POST["HowManyItems"] > 0) {
+                if (isset($_SESSION["ShoppingCart"][$_POST["ProductToBuy"]])) {
+                    $_SESSION["ShoppingCart"][$_POST["ProductToBuy"]] += $_POST["HowManyItems"];
+                } else {
+                    $_SESSION["ShoppingCart"][$_POST["ProductToBuy"]] =  $_POST["HowManyItems"];
+                }
             }
-        } else {
-            print "Something went wrong when selecting data";
+            //array_push($_SESSION["ShoppingCart"], $_POST["ProductToBuy"]);
+            //ALTERNATIVE:
+
         }
 
-        ?>
+        if (isset($_POST["ProductToDelete"])) {
+            $sqlDelete = $connection->prepare("Delete from Products where ID_Product =?");
+            if (!$sqlDelete)
+                die("Error in sql delete statement");
+            $sqlDelete->bind_param("i", $_POST["ProductToDelete"]);
+            $sqlDelete->execute();
+        }
 
-    </table>
+        include_once "Navigation.php";
+        ?>
+        <h1>Products</h1>
+        <table id="po">
+            <?php
+            $sqlSelect = $connection->prepare("SELECT * from Products");
+            $selectionWentOK = $sqlSelect->execute();
+
+            if ($selectionWentOK) {
+                $result = $sqlSelect->get_result();
+                while ($row = $result->fetch_assoc()) {
+            ?>
+                    <tr>
+                        <td>Product Name:<?= $row["ProductName"] ?></td>
+                        <td>Price:<?= $row["Price"] ?>€</td>
+                        <td>How many Available:<?= $row["ItemsAvailable"] ?></td>
+                        <?php
+                        if (isset($_SESSION["UserRole"]) && $_SESSION["UserRole"] == "Admin") {
+                        ?>
+                            <td>
+                                <form method="POST">
+                                    <input type="hidden" name="ProductToDelete" value="<?= $row["ID_Product"] ?>">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                        <?php
+                        } else {
+                        ?>
+                            <td>
+                                <form method="POST">
+                                    <input type="hidden" name="ProductToBuy" value="<?= $row["ID_Product"] ?>">
+                                    <input type="number" name="HowManyItems" value="0">
+                                    <input type="submit" value="Add to cart">
+                                </form>
+                            </td>
+                        <?php
+                        }
+                        ?>
+                    </tr>
+            <?php
+                }
+            } else {
+                print "Something went wrong when selecting data";
+            }
+
+            ?>
+
+        </table>
+        </div>
 </body>
 
 </html>

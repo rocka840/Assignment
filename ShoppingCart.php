@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <div class="shopping">
     <?php
     include_once("dbWebs.php");
 
@@ -18,16 +19,39 @@
         unset($_SESSION["ShoppingCart"][$_POST["itemToDelete"]]);
     }
 
+    if(isset($_POST["BuyAll"]) && sizeof($_SESSION["ShoppingCart"]) != 0){
+  
+        $OrderStatus = "Order to process";
+      //  INSERT into Orders (PersonOrder) values (SELECT ID_Person from People where Username = ?);
+        
+        $sqlInsert = $connection->prepare("INSERT into Orders(PersonOrder,OrderStatus) values ((SELECT ID_Person from People where UserName = ?),?);");
+        $sqlInsert->bind_param("ss", $_SESSION["CurrentUser"], $OrderStatus);
+        $insertWentOK = $sqlInsert->execute();
+        $newOrderId = mysqli_insert_id($connection);
+
+        foreach ($_SESSION["ShoppingCart"] as $key => $value){
+            //INSERT INTO OrderContents (OrderNumber, OrderItem, HowMany) values(?,?,?);
+
+            $sqlInsert2 = $connection->prepare("INSERT INTO OrderContents (OrderNumber, OrderItem, HowMany) values(?,?,?)");
+            $sqlInsert2->bind_param("iii", $newOrderId, $key, $value);
+            $insertWentOK = $sqlInsert2->execute();
+        }
+        $_SESSION["ShoppingCart"] = [];
+        print "Thank you for your order. It will be processed soon!";
+    }
+
     include_once "Navigation.php";
     ?>
 
     <h1>Shopping cart content:</h1>
-    <table>
+    <table class="shopping">
         <tr>
-        <th>Product Name</td>
-        <th>Number Ordered:</td>
+            <th>Product Name</th>
+            <th>Number Ordered:</th>
+            <th>Price:</th>
         </tr>
         <?php
+        $totalPrice = 0;
         foreach ($_SESSION["ShoppingCart"] as $key => $value) {
             //print $value. "<br>";
 
@@ -36,12 +60,17 @@
             $selectionWentOK = $sqlSelect->execute();
 
             if ($selectionWentOK) {
+                
                 $result = $sqlSelect->get_result();
                 $row = $result->fetch_assoc();
+                $totalPrice += $row["Price"] * $value;
         ?>
                 <tr>
                     <td><?= $row["ProductName"] ?></td>
                     <td><?= $value ?></td>
+                    <td>
+                        <?= $row["Price"] * $value ?>
+                    </td>
                     <td>
                         <form method="POST">
                             <input type="hidden" name="itemToDelete" value="<?= $key ?>">
@@ -54,6 +83,14 @@
         }
         ?>
     </table>
+        <?php
+            print "The total order price is: " . $totalPrice . "€";
+        ?>
+        <form method="POST">
+            <input type="submit" name="BuyAll">
+        </form>
+    
+    </div>
 </body>
 
 </html>

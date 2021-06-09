@@ -12,6 +12,8 @@
 
 <body>
 
+<div class="nav">
+
 <?php
 include_once "dbWebs.php";
 
@@ -78,6 +80,8 @@ if($_SESSION["isUserLoggedIn"]){
 }
 
 ?>
+
+</div>
 
 </body>
 

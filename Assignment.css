@@ -2,12 +2,73 @@
 
 a {
     display: inline;
+    border: solid burlywood 2px;
     width: 50px;
-    color: brown;
+    color:black;
     background-color: burlywood;
     text-decoration: none;
+}
+/* end of navigation bar commands*/
+
+.nav {
     text-align: center;
 }
 
+.home {
+    text-align: center;
+}
 
-/* end of navigation bar commands*/
+/* shopping page*/
+.shopping {
+    text-align: center;
+    margin:auto;
+}
+.shopping table td,th {
+    padding-right: 90px;
+}
+/*shopping end page*/
+
+
+/*.productview {
+    text-align: left;
+    margin: auto;
+}*/
+/*table td,th {
+    padding-right: 50px;
+}
+/*productview page end*/
+
+.signup {
+    text-align: center;
+    margin: auto;
+}
+#po{
+margin: auto; 
+}
+
+h1{
+    text-align: center;
+}
+
+.myReg{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: auto;
+}
+
+.myReg div{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3px;
+}
+
+.country{
+    text-align: center;
+    margin: auto;
+}
+
+#IDcoun{
+    margin-left: 245px;
+}
