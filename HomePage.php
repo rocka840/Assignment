@@ -16,8 +16,12 @@
     ?>
 
 <div class="home">
-    <h1>Online Shopping</h1>
+    <h1>2nd Hand-Shop</h1>
     <p>Buy Anything you want on this website. If there is something you wish us to sell, please email us here: shoppingkauplus@hotmail.com</p>
+    
+    <img src="dslite.jpg" alt="dslite" style="height: 300px; width: 300px;">
+    <img src="tabiheel.jpg" alt="tabiheel" style="height: 300px; width: 300px;">
+    <img src="applepencil.jpg" alt="applepencil" style="height: 300px; width: 300px;">
 </div>
 
 </body>

@@ -14,6 +14,7 @@
     <div class="shopping">
     <?php
     include_once("dbWebs.php");
+    
 
     if(isset($_POST["itemToDelete"])){
         unset($_SESSION["ShoppingCart"][$_POST["itemToDelete"]]);
@@ -39,8 +40,9 @@
         $_SESSION["ShoppingCart"] = [];
         print "Thank you for your order. It will be processed soon!";
     }
-
+    
     include_once "Navigation.php";
+
     ?>
 
     <h1>Shopping cart content:</h1>

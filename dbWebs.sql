@@ -19,7 +19,7 @@ Create table People (
     ID_Country int not null,
     UserRole varchar(40),
     primary key (ID_Person),
-    foreign key (ID_Country) references Countries(ID_Country)
+    foreign key (ID_Country) references Countries(ID_Country) ON DELETE CASCADE
 );
 
 Create table Products (
@@ -35,7 +35,7 @@ Create table Orders (
     PersonOrder int,
     OrderStatus varchar(20),
     primary key (ID_Orders),
-    foreign key (PersonOrder) references People(ID_Person)
+    foreign key (PersonOrder) references People(ID_Person) ON DELETE CASCADE
 );
 
 Create table OrderContents (
@@ -43,9 +43,9 @@ Create table OrderContents (
     primary key (ID_OrderContent),
     OrderNumber int,
     OrderItem int,
-    HowMany int,
-    foreign key (OrderNumber) references Orders(ID_Orders),
-    foreign key (OrderItem) references Products(ID_Product)
+    HowMany int, 
+    foreign key (OrderNumber) references Orders(ID_Orders) ON DELETE CASCADE,
+    foreign key (OrderItem) references Products(ID_Product) ON DELETE CASCADE
 );
 
 Insert into Countries (CountryName) values ("Luxembourg");

@@ -11,7 +11,13 @@
 
     <?php
     include_once("dbWebs.php");
+    include_once("AdminCheck.php");
     include_once "Navigation.php";
+
+    if (!$_SESSION["isUserLoggedIn"]) {
+        header("Location: login.php");
+        die();
+    }
     ?>
         <h1>Current Existing countries in our database</h1>
         <div class="country">
@@ -22,6 +28,7 @@
             die("Error in sql delete statement");
         $sqlDelete->bind_param("i", $_POST["CountryToDelete"]);
         $sqlDelete->execute();
+        $sql->close();
     }  
 
 
@@ -31,6 +38,7 @@
             $sqlInsert = $connection->prepare("INSERT INTO Countries (CountryName) values(?)");
             $sqlInsert->bind_param("s", $_POST["NewCountry"]);
             $resultOfExecute = $sqlInsert->execute();
+            $sql->close();
             if(!$resultOfExecute){
                 print "Creation of country, failed.";
             }
@@ -57,6 +65,7 @@
 
         if($selectionWentOK){
             $result = $sqlSelect->get_result();
+            $sqlSelect->close();
             while($row=$result->fetch_assoc()){
                 ?>
                 <tr>

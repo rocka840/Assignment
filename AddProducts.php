@@ -13,7 +13,13 @@
 <body>
     <?php
     include_once("dbWebs.php");
+    include_once("AdminCheck.php");
     include_once "Navigation.php";
+    
+    if (!$_SESSION["isUserLoggedIn"]) {
+        header("Location: login.php");
+        die();
+    }
 
     if (isset(
         $_POST["ProductName"],
@@ -46,6 +52,7 @@
                 $sqlInsert = $connection->prepare("INSERT INTO Products (ProductName) values(?)");
                 $sqlInsert->bind_param("s", $_POST["NewProduct"]);
                 $resultOfExecute = $sqlInsert->execute();
+                $sqlInsert->close();
 
                 if (!$resultOfExecute) {
                     print "Adding a new product, failed.";
