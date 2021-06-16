@@ -38,7 +38,6 @@
             $sqlInsert = $connection->prepare("INSERT INTO Countries (CountryName) values(?)");
             $sqlInsert->bind_param("s", $_POST["NewCountry"]);
             $resultOfExecute = $sqlInsert->execute();
-            $sql->close();
             if(!$resultOfExecute){
                 print "Creation of country, failed.";
             }

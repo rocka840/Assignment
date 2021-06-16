@@ -30,12 +30,24 @@ Create table Products (
     primary key (ID_Product)
 );
 
+Create table OrderStatus(
+    ID_Status int not null AUTO_INCREMENT,
+    OrderStatus varchar(20),
+    primary key (ID_Status)
+);
+
+Insert into OrderStatus(OrderStatus) values("Order Sent");
+Insert into OrderStatus(OrderStatus) values("Order Processed");
+Insert into OrderStatus(OrderStatus) values("Order in Tranzit");
+Insert into OrderStatus(OrderStatus) values("Order Delivered");
+
 Create table Orders (
     ID_Orders int not null AUTO_INCREMENT,
     PersonOrder int,
-    OrderStatus varchar(20),
+    OrderStatus int not null,
     primary key (ID_Orders),
-    foreign key (PersonOrder) references People(ID_Person) ON DELETE CASCADE
+    foreign key (PersonOrder) references People(ID_Person) ON DELETE CASCADE,
+    foreign key (OrderStatus) references OrderStatus(ID_Status)
 );
 
 Create table OrderContents (

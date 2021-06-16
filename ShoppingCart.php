@@ -22,11 +22,11 @@
 
     if(isset($_POST["BuyAll"]) && sizeof($_SESSION["ShoppingCart"]) != 0){
   
-        $OrderStatus = "Order to process";
+        $OrderStatus = 1;
       //  INSERT into Orders (PersonOrder) values (SELECT ID_Person from People where Username = ?);
         
         $sqlInsert = $connection->prepare("INSERT into Orders(PersonOrder,OrderStatus) values ((SELECT ID_Person from People where UserName = ?),?);");
-        $sqlInsert->bind_param("ss", $_SESSION["CurrentUser"], $OrderStatus);
+        $sqlInsert->bind_param("si", $_SESSION["CurrentUser"], $OrderStatus);
         $insertWentOK = $sqlInsert->execute();
         $newOrderId = mysqli_insert_id($connection);
 

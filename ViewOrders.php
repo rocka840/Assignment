@@ -33,9 +33,11 @@
         </tr>
             <?php
             while ($row = $result->fetch_assoc()) {
-                print("<tr>");
-                print("<td>".$row["ID_Orders"] . "</td><td> " . $row["UserName"]."</td>");
-                print("</td>");
+               ?>
+               <tr>
+                    <th></th>
+               </tr>
+                
             }
 
             ?>
