@@ -12,6 +12,7 @@
 <div class="nav">
    <a href="HomePage.php">Home</a>
    <a href="UserLogin.php">Login</a>
+
    <?php
       if($_SESSION["isUserLoggedIn"] == false){
 
@@ -29,7 +30,7 @@
    ?>
       <a href="AddCountry.php">Add Country</a>
       <a href="AddProducts.php">Add Products</a>
-      <a href="ViewOrders.php">View Orders</a>
+      <a href="CurrentOrders.php">View Orders</a>
    <?php
    } else if($_SESSION["isUserLoggedIn"]){
       ?>
@@ -40,6 +41,9 @@
 
    }
    ?>
+
+   <a href="HistoryOfOrders.php">History Of Orders</a>
+
 </div>
 </body>
 </html>

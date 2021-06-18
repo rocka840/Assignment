@@ -14,8 +14,12 @@
     <div class="shopping">
     <?php
     include_once("dbWebs.php");
-    
 
+    if ((!$_SESSION["isUserLoggedIn"]) || ($_SESSION["UserRole"] == "Admin")) {
+        header("Location: HomePage.php");
+        die();
+    }
+    
     if(isset($_POST["itemToDelete"])){
         unset($_SESSION["ShoppingCart"][$_POST["itemToDelete"]]);
     }

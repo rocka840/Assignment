@@ -1,2 +1,2 @@
 use assignment;
-UPDATE people SET UserRole="Admin" WHERE ID_Person=3;
+UPDATE people SET UserRole="Admin" WHERE ID_Person=1;
