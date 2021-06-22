@@ -28,7 +28,7 @@
             die("Error in sql delete statement");
         $sqlDelete->bind_param("i", $_POST["CountryToDelete"]);
         $sqlDelete->execute();
-        $sql->close();
+        $sqlDelete->close();
     }  
 
 
